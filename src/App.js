@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import NavBar from './1_components/NavBar';
+import Banner from './1_components/Banner';
+import MovieList from './1_components/MovieList';
 import './App.css';
+import Favourites from './1_components/Favourites';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'//used to create routing
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+
+      <NavBar />
+      <Routes>
+        <Route path='/' element={
+          <>
+            <Banner />
+            <MovieList />
+          </>
+        } />
+        <Route path='/fav' element={
+          <Favourites />
+        } />
+      </Routes>
+
+    </BrowserRouter>
+
   );
 }
 
