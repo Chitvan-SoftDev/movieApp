@@ -22,8 +22,12 @@ export class MovieList extends Component {
     // console.log(response)
     let movieData = response.data
     console.log(movieData)
+    let oldData= JSON.parse(localStorage.getItem('movies-app')||'[]')
+      let temp= oldData.map((movie)=>movie.id)
+      
 
     this.setState({
+      favourites:[...temp],
       movies: [...movieData.results]
     })
     console.log('mounting done with cdm third')
@@ -84,7 +88,7 @@ export class MovieList extends Component {
       oldData.push(movie)
     }
     localStorage.setItem('movies-app',JSON.stringify(oldData))
-    console.log(oldData)
+    // console.log(oldData)
     this.handleFavouritesState()
     }
 

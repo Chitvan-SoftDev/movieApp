@@ -30,7 +30,6 @@ export class Favourites extends Component {
         })
     }
 
-
     handleGenreChange = (genre) => {
         this.setState({
             currgenre: genre
@@ -81,6 +80,19 @@ export class Favourites extends Component {
         })
     }
 
+
+    handleDelete=(movie)=>{
+        let oldData= JSON.parse(localStorage.getItem('movies-app')||'[]')
+        // console.log(oldData)
+            oldData=oldData.filter((m)=>m.id!=movie.id)//removing if movie already exists
+          localStorage.setItem('movies-app',JSON.stringify(oldData))
+    //   console.log(movie.title)
+    //   console.log(movies)
+    //   console.log(oldData)
+    this.componentDidMount()
+    }
+
+    
 
 
     render() {
@@ -161,7 +173,7 @@ export class Favourites extends Component {
                                                 <td>{movieElem.popularity}</td>
                                                 <td>{movieElem.vote_average}</td>
                                                 {/* bootstrap button */}
-                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                                <td><button type="button" class="btn btn-danger" onClick={()=>this.handleDelete(movieElem)}>Delete</button></td>
                                             </tr>
                                         ))
                                     }
